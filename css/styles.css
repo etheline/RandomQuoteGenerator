@@ -114,6 +114,12 @@ h1 {
   content: ", ";
   font-style: normal;
 }
+.tag {
+  font-size: 1rem;
+}
+.tag:before {
+  content: ", ";
+}
 
 @media (min-width: 768px) {
   body {
