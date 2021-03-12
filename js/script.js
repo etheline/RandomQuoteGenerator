@@ -29,26 +29,33 @@ const quotes = [
   }, 
   { 
     quote: `If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough.`, 
-    source: 'Oprah Winfrey',
+    source: 'Oprah Winfrey', 
     tags: ['happiness']
   }, 
   { 
-    quote: `Life has a meaning but do not set out to find out. Just live it out`, 
+    quote: 'Life has a meaning but do not set out to find out. Just live it out', 
     source: 'Bangambiki Habyarimana',
     citation: 'Pearls Of Eternity'
   }, 
   { 
-    quote: `You may not control all the events that happen to you, but you can decide not to be reduced by them.`, 
+    quote: 'You may not control all the events that happen to you, but you can decide not to be reduced by them.', 
     source: 'Maya Angelou',
     year: 1999, 
     tags: ['inspiration', 'life']
   }, 
   { 
-    quote: `You can only become truly accomplished at something you love.`, 
+    quote: 'You can only become truly accomplished at something you love.', 
     source: 'Maya Angelou',
     year: 2000, 
     tags: ['inspiration', 'life']
+  }, 
+  { 
+    quote: 'Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.', 
+    source: 'Patrick McKenzie',
+    citation: 'Twitter',
+    year: 1999
   }
+  
 
 ]
 
@@ -61,8 +68,8 @@ function getRandomQuote() {
   return quotes[randomNum];
 }
 
-
-
+// Automatically changes quote on screen every 10 seconds
+let timer = setInterval(printQuote, 10000);
 
 /***
 printQuote calls getRandomQuote to get a random quote from the list of quotes. Then it constructs HTML code for the new quote and displays it on the page. 
@@ -88,6 +95,7 @@ function printQuote() {
   newQuote += '</p>';
   document.getElementById('quote-box').innerHTML = newQuote;
   changeBG();
+  resetTimer();
 }
 
 /***
@@ -103,11 +111,19 @@ function changeBG() {
 }
 
 
+// Automatically prints a random quote whenever you refresh the page. 
+printQuote();
+
 /***
  Prints a new quote and updates background color randomly every time the user clicks on the 'Show another quote' button by calling printQuote. 
 ***/
-
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
-// Automatically changes quote on screen every 20 seconds
-setInterval(printQuote, 20000);
+
+/***
+Automatically resets timer by clearing old timer and creating a new one. 
+***/
+function resetTimer() {
+  clearInterval(timer);
+  timer = setInterval(printQuote, 10000);
+}
